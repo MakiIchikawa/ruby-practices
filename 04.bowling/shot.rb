@@ -8,6 +8,6 @@ class Shot
   end
 
   def score
-    @mark.equal?('X') ? 10 : @mark.to_i
+    @mark.eql?('X') ? 10 : @mark.to_i
   end
 end
