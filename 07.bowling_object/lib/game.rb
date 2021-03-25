@@ -32,9 +32,9 @@ class Game
 
   private
 
-  def bonus(strike, next_frame, next_next_frame = nil)
+  def bonus(shot_mark, next_frame, next_next_frame = nil)
     score = next_frame.first_shot.score
-    if strike == 'X'
+    if shot_mark == 'X'
       second_shot = next_frame.second_shot
       score += second_shot.mark ? second_shot.score : next_next_frame.first_shot.score
     end
