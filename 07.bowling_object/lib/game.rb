@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-require './frame'
-require './shot'
+require_relative 'frame'
+require_relative 'shot'
 class Game
   attr_reader :frames
 

@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 require 'minitest/autorun'
-require './game'
-require './frame'
+require_relative '../lib/game'
+require_relative '../lib/frame'
 
 class GameTest < Minitest::Test
   def test_initialize_case1
