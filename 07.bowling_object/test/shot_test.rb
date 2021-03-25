@@ -4,13 +4,9 @@ require 'minitest/autorun'
 require_relative '../lib/shot'
 
 class ShotTest < Minitest::Test
-  def test_initialize
-    assert Shot.new('X')
-    shot = Shot.new('1')
-    assert_equal '1', shot.mark
-  end
+  # ショットクラスの単体テストを行う
 
-  def test_score
+  def test_score_method
     shot = Shot.new('X')
     assert_equal 10, shot.score
     shot = Shot.new('1')

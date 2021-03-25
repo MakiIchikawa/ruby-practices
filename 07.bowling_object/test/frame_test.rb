@@ -4,14 +4,9 @@ require 'minitest/autorun'
 require_relative '../lib/frame'
 
 class FrameTest < Minitest::Test
-  def test_initialize
-    assert Frame.new('1', '2')
-    assert Frame.new('X', 'X', 'X')
-    assert Frame.new('2', '8', 'X')
-    assert Frame.new('X')
-  end
+  # フレームクラスの単体テストを行う
 
-  def test_score
+  def test_score_method
     frame = Frame.new('1', '2')
     assert_equal 3, frame.score
     frame = Frame.new('X', 'X', 'X')
