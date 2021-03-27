@@ -7,15 +7,17 @@ class Game
 
   def initialize(shots)
     @frames = []
-    9.times do
-      marks = shots.shift(2)
-      if marks.first == 'X'
-        shots.unshift(marks.last)
-        marks.pop(1)
+    frame = Frame.new(nil)
+    shots.each do |shot|
+      frame.add_shot(shot)
+      next if @frames.length == 9
+
+      if shot == 'X' || frame.second_shot.mark
+        @frames << frame
+        frame = Frame.new(nil)
       end
-      @frames << Frame.new(marks[0], marks[1])
     end
-    @frames << Frame.new(shots[0], shots[1], shots[2])
+    @frames << frame if @frames.length == 9
   end
 
   def score
