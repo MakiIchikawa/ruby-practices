@@ -20,6 +20,10 @@ class Frame
     end
   end
 
+  def second_shot_present?
+    !@second_shot.mark.nil?
+  end
+
   def score
     @first_shot.score + @second_shot.score + @third_shot.score
   end

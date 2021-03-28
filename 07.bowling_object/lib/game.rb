@@ -12,7 +12,7 @@ class Game
       frame.add_shot(shot)
       next if @frames.length == 9
 
-      if shot == 'X' || frame.second_shot.mark
+      if shot == 'X' || frame.second_shot_present?
         @frames << frame
         frame = Frame.new(nil)
       end
@@ -37,8 +37,8 @@ class Game
   def bonus(shot, next_frame, next_next_frame = nil)
     score = next_frame.first_shot.score
     if shot.strike?
-      second_shot = next_frame.second_shot
-      score += second_shot.mark ? second_shot.score : next_next_frame.first_shot.score
+      second_shot = next_frame.second_shot_present? ? next_frame.second_shot : next_next_frame.first_shot
+      score += second_shot.score
     end
     score
   end
