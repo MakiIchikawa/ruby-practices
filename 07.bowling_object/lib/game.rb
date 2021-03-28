@@ -27,16 +27,16 @@ class Game
       game_score += frame_score
       break if idx == 9
 
-      game_score += bonus(frame.first_shot.mark, frames[idx + 1], frames[idx + 2]) if frame_score == 10
+      game_score += bonus(frame.first_shot, frames[idx + 1], frames[idx + 2]) if frame_score == 10
     end
     game_score
   end
 
   private
 
-  def bonus(shot_mark, next_frame, next_next_frame = nil)
+  def bonus(shot, next_frame, next_next_frame = nil)
     score = next_frame.first_shot.score
-    if shot_mark == 'X'
+    if shot.strike?
       second_shot = next_frame.second_shot
       score += second_shot.mark ? second_shot.score : next_next_frame.first_shot.score
     end
