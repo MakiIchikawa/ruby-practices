@@ -24,7 +24,7 @@ class Frame
     !@second_shot.mark.nil?
   end
 
-  def score
-    @first_shot.score + @second_shot.score + @third_shot.score
+  def calc_score
+    @first_shot.calc_score + @second_shot.calc_score + @third_shot.calc_score
   end
 end

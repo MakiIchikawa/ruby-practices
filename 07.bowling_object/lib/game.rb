@@ -20,25 +20,25 @@ class Game
     @frames << frame if @frames.length == 9
   end
 
-  def score
+  def calc_score
     game_score = 0
     @frames.each_with_index do |frame, idx|
-      frame_score = frame.score
+      frame_score = frame.calc_score
       game_score += frame_score
       break if idx == 9
 
-      game_score += bonus(frame.first_shot, frames[idx + 1], frames[idx + 2]) if frame_score == 10
+      game_score += calc_bonus(frame.first_shot, frames[idx + 1], frames[idx + 2]) if frame_score == 10
     end
     game_score
   end
 
   private
 
-  def bonus(shot, next_frame, next_next_frame = nil)
-    score = next_frame.first_shot.score
+  def calc_bonus(shot, next_frame, next_next_frame = nil)
+    score = next_frame.first_shot.calc_score
     if shot.strike?
       second_shot = next_frame.second_shot_present? ? next_frame.second_shot : next_next_frame.first_shot
-      score += second_shot.score
+      score += second_shot.calc_score
     end
     score
   end

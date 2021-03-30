@@ -17,14 +17,14 @@ class ShotTest < Minitest::Test
     assert_equal false, shot.strike?
   end
 
-  def test_score_method
+  def test_calc_score_method
     shot = Shot.new('X')
-    assert_equal 10, shot.score
+    assert_equal 10, shot.calc_score
 
     shot = Shot.new('1')
-    assert_equal 1, shot.score
+    assert_equal 1, shot.calc_score
 
     shot = Shot.new('2')
-    assert_equal 2, shot.score
+    assert_equal 2, shot.calc_score
   end
 end
