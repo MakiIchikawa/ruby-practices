@@ -2,6 +2,7 @@
 
 require_relative 'frame'
 require_relative 'shot'
+
 class Game
   attr_reader :frames
 
