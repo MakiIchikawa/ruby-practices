@@ -4,8 +4,6 @@ require 'minitest/autorun'
 require_relative '../lib/shot'
 
 class ShotTest < Minitest::Test
-  # ショットクラスの単体テストを行う
-
   def test_strike_method
     shot = Shot.new('X')
     assert_equal true, shot.strike?

@@ -5,8 +5,6 @@ require_relative '../lib/game'
 require_relative '../lib/frame'
 
 class GameTest < Minitest::Test
-  # ゲームクラスの単体テストを行う
-
   def test_calc_score_method
     game = Game.new(%w[0 10 1 5 0 0 0 0 X X X 5 1 8 1 0 4])
     assert_equal 107, game.calc_score

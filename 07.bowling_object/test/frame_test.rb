@@ -4,8 +4,6 @@ require 'minitest/autorun'
 require_relative '../lib/frame'
 
 class FrameTest < Minitest::Test
-  # フレームクラスの単体テストを行う
-
   def test_calc_score_method
     frame = Frame.new('1', '2')
     assert_equal 3, frame.calc_score
