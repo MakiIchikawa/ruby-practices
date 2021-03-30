@@ -4,7 +4,7 @@ require 'minitest/autorun'
 require_relative '../lib/shot'
 
 class ShotTest < Minitest::Test
-  def test_strike_method
+  def test_strike
     shot = Shot.new('X')
     assert shot.strike?
 
@@ -15,7 +15,7 @@ class ShotTest < Minitest::Test
     refute shot.strike?
   end
 
-  def test_calc_score_method
+  def test_calc_score
     shot = Shot.new('X')
     assert_equal 10, shot.calc_score
 
