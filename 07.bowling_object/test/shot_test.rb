@@ -6,13 +6,13 @@ require_relative '../lib/shot'
 class ShotTest < Minitest::Test
   def test_strike_method
     shot = Shot.new('X')
-    assert_equal true, shot.strike?
+    assert shot.strike?
 
     shot = Shot.new('1')
-    assert_equal false, shot.strike?
+    refute shot.strike?
 
     shot = Shot.new('10')
-    assert_equal false, shot.strike?
+    refute shot.strike?
   end
 
   def test_calc_score_method
