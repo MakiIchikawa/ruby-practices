@@ -9,8 +9,8 @@ class Frame
     @shots = []
   end
 
-  def add_shot(shot_mark)
-    shots << Shot.new(shot_mark)
+  def add_shot(shot)
+    shots << shot
   end
 
   def second_shot_present?
