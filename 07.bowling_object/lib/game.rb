@@ -4,6 +4,7 @@ require_relative 'frame'
 require_relative 'shot'
 
 class Game
+  LAST_FRAME = 9
   attr_reader :frames
 
   def initialize(shots)
@@ -11,14 +12,14 @@ class Game
     frame = Frame.new(nil)
     shots.each do |shot|
       frame.add_shot(shot)
-      next if @frames.length == 9
+      next if @frames.length == LAST_FRAME
 
       if shot == 'X' || frame.second_shot_present?
         @frames << frame
         frame = Frame.new(nil)
       end
     end
-    @frames << frame if @frames.length == 9
+    @frames << frame if @frames.length == LAST_FRAME
   end
 
   def calc_score
@@ -26,7 +27,7 @@ class Game
     @frames.each_with_index do |frame, idx|
       frame_score = frame.calc_score
       game_score += frame_score
-      break if idx == 9
+      break if idx == LAST_FRAME
 
       game_score += calc_bonus(frame.first_shot, frames[idx + 1], frames[idx + 2]) if frame_score == 10
     end
