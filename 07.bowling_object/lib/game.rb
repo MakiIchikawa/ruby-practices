@@ -9,14 +9,14 @@ class Game
 
   def initialize(shots)
     @frames = []
-    frame = Frame.new(nil)
+    frame = Frame.new
     shots.each do |shot|
       frame.add_shot(shot)
       next if @frames.length == LAST_FRAME
 
       if shot == 'X' || frame.second_shot_present?
         @frames << frame
-        frame = Frame.new(nil)
+        frame = Frame.new
       end
     end
     @frames << frame if @frames.length == LAST_FRAME
@@ -29,7 +29,7 @@ class Game
       game_score += frame_score
       break if idx == LAST_FRAME
 
-      game_score += calc_bonus(frame.first_shot, frames[idx + 1], frames[idx + 2]) if frame_score == 10
+      game_score += calc_bonus(frame.shots[0], frames[idx + 1], frames[idx + 2]) if frame_score == 10
     end
     game_score
   end
@@ -37,9 +37,9 @@ class Game
   private
 
   def calc_bonus(shot, next_frame, after_next_frame = nil)
-    score = next_frame.first_shot.calc_score
+    score = next_frame.shots[0].calc_score
     if shot.strike?
-      second_shot = next_frame.second_shot_present? ? next_frame.second_shot : after_next_frame.first_shot
+      second_shot = next_frame.second_shot_present? ? next_frame.shots[1] : after_next_frame.shots[0]
       score += second_shot.calc_score
     end
     score
