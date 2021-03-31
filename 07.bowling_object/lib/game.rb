@@ -36,10 +36,10 @@ class Game
 
   private
 
-  def calc_bonus(shot, next_frame, next_next_frame = nil)
+  def calc_bonus(shot, next_frame, after_next_frame = nil)
     score = next_frame.first_shot.calc_score
     if shot.strike?
-      second_shot = next_frame.second_shot_present? ? next_frame.second_shot : next_next_frame.first_shot
+      second_shot = next_frame.second_shot_present? ? next_frame.second_shot : after_next_frame.first_shot
       score += second_shot.calc_score
     end
     score
