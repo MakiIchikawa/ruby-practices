@@ -7,19 +7,16 @@ class Game
   LAST_FRAME = 9
   attr_reader :frames
 
-  def initialize(shots)
+  def initialize
     @frames = []
-    frame = Frame.new
-    shots.each do |shot|
-      frame.add_shot(shot)
-      next if @frames.length == LAST_FRAME
+  end
 
-      if shot == 'X' || frame.second_shot_present?
-        @frames << frame
-        frame = Frame.new
-      end
-    end
-    @frames << frame if @frames.length == LAST_FRAME
+  def add_frame(frame)
+    @frames << frame
+  end
+
+  def add_last_frame?
+    @frames.length == 9
   end
 
   def calc_score

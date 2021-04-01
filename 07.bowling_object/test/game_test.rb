@@ -5,16 +5,52 @@ require_relative '../lib/game'
 require_relative '../lib/frame'
 
 class GameTest < Minitest::Test
+  def setup
+    @frame = Frame.new
+    @frame.add_shot(Shot.new('2'))
+    @frame.add_shot(Shot.new('3'))
+    @frame_spare = Frame.new
+    @frame_spare.add_shot(Shot.new('0'))
+    @frame_spare.add_shot(Shot.new('10'))
+    @frame_strike = Frame.new
+    @frame_strike.add_shot(Shot.new('X'))
+  end
+
+  def test_add_frame
+    game = Game.new
+    assert_equal [], game.frames
+    game.add_frame(@frame_spare)
+    assert_equal [@frame_spare], game.frames
+    game.add_frame(@frame_normal)
+    assert_equal [@frame_spare, @frame_normal], game.frames
+  end
+
+  def test_add_last_frame?
+    game = Game.new
+    game.add_frame(@frame)
+    game.add_frame(@frame)
+    game.add_frame(@frame)
+    game.add_frame(@frame)
+    game.add_frame(@frame)
+    game.add_frame(@frame)
+    game.add_frame(@frame)
+    game.add_frame(@frame)
+    game.add_frame(@frame)
+    assert game.add_last_frame?
+  end
+
   def test_calc_score
-    game = Game.new(%w[0 10 1 5 0 0 0 0 X X X 5 1 8 1 0 4])
-    assert_equal 107, game.calc_score
-    game = Game.new(%w[6 3 9 0 0 3 8 2 7 3 X 9 1 8 0 X 6 4 5])
-    assert_equal 139, game.calc_score
-    game = Game.new(%w[6 3 9 0 0 3 8 2 7 3 X 9 1 8 0 X X X X])
-    assert_equal 164, game.calc_score
-    game = Game.new(%w[6 3 9 0 0 3 8 2 7 3 X 9 1 8 0 X X 0 0])
-    assert_equal 134, game.calc_score
-    game = Game.new(%w[X X X X X X X X X X X X])
-    assert_equal 300, game.calc_score
+    game = Game.new
+    game.add_frame(@frame)
+    game.add_frame(@frame)
+    game.add_frame(@frame_strike)
+    game.add_frame(@frame_strike)
+    game.add_frame(@frame_strike)
+    game.add_frame(@frame)
+    game.add_frame(@frame_spare)
+    game.add_frame(@frame)
+    game.add_frame(@frame)
+    game.add_frame(@frame)
+    assert_equal 109, game.calc_score
   end
 end
