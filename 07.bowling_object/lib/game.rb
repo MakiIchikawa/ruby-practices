@@ -16,7 +16,7 @@ class Game
   end
 
   def add_last_frame?
-    @frames.length == 9
+    @frames.length == LAST_FRAME
   end
 
   def calc_score
