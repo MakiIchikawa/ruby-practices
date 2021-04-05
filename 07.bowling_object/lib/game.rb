@@ -5,23 +5,11 @@ require_relative 'shot'
 
 class Game
   LAST_FRAME = 9
-  attr_reader :frames
 
-  def initialize
-    @frames = []
-  end
-
-  def add_frame(frame)
-    @frames << frame
-  end
-
-  def add_last_frame?
-    @frames.length == LAST_FRAME
-  end
-
-  def calc_score
+  def self.calc_score(marks)
+    frames = generate_frames(marks)
     game_score = 0
-    @frames.each_with_index do |frame, idx|
+    frames.each_with_index do |frame, idx|
       frame_score = frame.calc_score
       game_score += frame_score
       break if idx == LAST_FRAME
@@ -31,9 +19,24 @@ class Game
     game_score
   end
 
-  private
+  def self.generate_frames(marks)
+    frame = Frame.new
+    frames = []
+    marks.each do |mark|
+      shot = Shot.new(mark)
+      frame.add_shot(shot)
+      next if frames.length == LAST_FRAME
 
-  def calc_bonus(shot, next_frame, after_next_frame = nil)
+      if shot.strike? || frame.second_shot_present?
+        frames << frame
+        frame = Frame.new
+      end
+    end
+    frames << frame
+    frames
+  end
+
+  def self.calc_bonus(shot, next_frame, after_next_frame = nil)
     score = next_frame.shots[0].calc_score
     if shot.strike?
       second_shot = next_frame.second_shot_present? ? next_frame.shots[1] : after_next_frame.shots[0]
