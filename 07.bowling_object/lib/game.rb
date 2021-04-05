@@ -37,10 +37,10 @@ class Game
   end
 
   def self.calc_bonus(shot, next_frame, after_next_frame = nil)
-    score = next_frame.shots[0].calc_score
+    score = next_frame.shots[0].score
     if shot.strike?
       second_shot = next_frame.second_shot_present? ? next_frame.shots[1] : after_next_frame.shots[0]
-      score += second_shot.calc_score
+      score += second_shot.score
     end
     score
   end

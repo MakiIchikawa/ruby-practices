@@ -11,7 +11,7 @@ class Shot
     @mark == 'X'
   end
 
-  def calc_score
+  def score
     @mark == 'X' ? 10 : @mark.to_i
   end
 end

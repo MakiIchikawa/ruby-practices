@@ -15,14 +15,14 @@ class ShotTest < Minitest::Test
     refute shot.strike?
   end
 
-  def test_calc_score
+  def test_score
     shot = Shot.new('X')
-    assert_equal 10, shot.calc_score
+    assert_equal 10, shot.score
 
     shot = Shot.new('1')
-    assert_equal 1, shot.calc_score
+    assert_equal 1, shot.score
 
     shot = Shot.new('2')
-    assert_equal 2, shot.calc_score
+    assert_equal 2, shot.score
   end
 end

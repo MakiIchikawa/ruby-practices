@@ -18,6 +18,6 @@ class Frame
   end
 
   def calc_score
-    shots.sum(&:calc_score)
+    shots.sum(&:score)
   end
 end
