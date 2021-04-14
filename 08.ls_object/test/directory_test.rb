@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'minitest/autorun'
-require_relative '../lib/Directory'
+require_relative '../lib/directory'
 
 class DirectoryTest < Minitest::Test
   def setup
