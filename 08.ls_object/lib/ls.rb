@@ -10,6 +10,7 @@ class Ls
 
   def execute
     files = directory.files(options)
+    files.reverse! if options[:r]
     output_long_false(files)
   end
 

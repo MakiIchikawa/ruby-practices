@@ -35,6 +35,20 @@ class LsTest < Minitest::Test
     assert_equal output, ls.execute
   end
 
+  def test_execute_r_option
+    output = <<~TEXT
+      test.txt
+      .test.txt
+      ..
+      .
+    TEXT
+
+    options = { a: true, r: true, l: false }
+
+    ls = Ls.new(@directory, options)
+    assert_equal output, ls.execute
+  end
+
   def teardown
     system('rm -R ~/test')
   end
