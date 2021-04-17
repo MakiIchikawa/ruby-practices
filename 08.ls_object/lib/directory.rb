@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require_relative 'file'
+
 class Directory
   attr_reader :absolute_path
 
@@ -9,11 +11,10 @@ class Directory
 
   def files(options)
     files = []
-    file = Struct.new('File', :name)
     Dir.open(absolute_path).each do |f|
       next if !options[:a] && f.match?(/^\./)
 
-      files << file.new(f)
+      files << File.new("#{absolute_path}/#{f}")
     end
     files
   end
