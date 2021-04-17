@@ -12,14 +12,14 @@ class DirectoryTest < Minitest::Test
   end
 
   def test_files
-    dir = Directory.new(@path)
-    files = dir.files
+    directory = Directory.new(@path)
+    files = directory.files({ a: false, l: false })
     assert_equal 'test.txt', files[0].name
   end
 
   def test_files_a_option
-    dir = Directory.new(@path)
-    files = dir.files('all')
+    directory = Directory.new(@path)
+    files = directory.files({ a: true, l: false })
     assert_equal '.', files[0].name
     assert_equal '..', files[1].name
     assert_equal '.test.txt', files[2].name

@@ -7,11 +7,11 @@ class Directory
     @absolute_path = File.expand_path(path.nil? ? '.' : path)
   end
 
-  def files(option = nil)
+  def files(options)
     files = []
     file = Struct.new('File', :name)
     Dir.open(absolute_path).each do |f|
-      next if option.nil? && f.match?(/^\./)
+      next if !options[:a] && f.match?(/^\./)
 
       files << file.new(f)
     end

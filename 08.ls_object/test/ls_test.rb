@@ -17,7 +17,20 @@ class LsTest < Minitest::Test
       test.txt
     TEXT
 
-    options = {a:false, r:false, l:false}
+    options = { a: false, r: false, l: false }
+    ls = Ls.new(@directory, options)
+    assert_equal output, ls.execute
+  end
+
+  def test_execute_a_option
+    output = <<~TEXT
+      .
+      ..
+      .test.txt
+      test.txt
+    TEXT
+
+    options = { a: true, r: false, l: false }
     ls = Ls.new(@directory, options)
     assert_equal output, ls.execute
   end

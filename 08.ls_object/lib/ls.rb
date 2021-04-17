@@ -1,17 +1,15 @@
 # frozen_string_literal: true
 
 class Ls
-  attr_reader :directory, :a_option, :l_option, :r_option
+  attr_reader :directory, :options
 
   def initialize(directory, options)
     @directory = directory
-    @a_option = options.fetch(:a, false)
-    @l_option = options.fetch(:l, false)
-    @r_option = options.fetch(:r, false)
+    @options = options
   end
 
   def execute
-    files = l_option ? directory.files(long) : directory.files
+    files = directory.files(options)
     output_long_false(files)
   end
 
