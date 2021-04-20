@@ -9,10 +9,10 @@ class Directory
     @absolute_path = File.expand_path(path.nil? ? '.' : path)
   end
 
-  def files(options)
+  def files(a_option)
     files = []
     Dir.open(absolute_path).each do |f|
-      next if !options[:a] && f.match?(/^\./)
+      next if !a_option && f.match?(/^\./)
 
       files << LsFile.new(f, absolute_path)
     end

@@ -9,7 +9,7 @@ class Ls
   end
 
   def execute
-    files = directory.files(options)
+    files = directory.files(options[:a])
     files.reverse! if options[:r]
     options[:l] ? output_long_true(files) : output_long_false(files)
   end
