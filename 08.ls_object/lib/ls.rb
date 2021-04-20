@@ -11,10 +11,35 @@ class Ls
   def execute
     files = directory.files(options)
     files.reverse! if options[:r]
-    output_long_false(files)
+    options[:l] ? output_long_true(files) : output_long_false(files)
   end
 
   private
+
+  def output_long_true(files)
+    columns = files.each_with_object([]) do |file, rows|
+      rows << [file.type + file.permission,
+               file.nlink,
+               file.owner,
+               file.group,
+               file.size,
+               file.timestamp,
+               file.name]
+    end.transpose
+    columns.each_with_index do |column, index|
+      break if index == 6
+
+      width = calc_max_word_count(column) + 1
+      column.map! { |element| element.ljust(width) }
+    end
+    rows = columns.transpose
+    total = Directory.calc_total_blocks(files)
+    output = "total #{total}\n"
+    rows.each do |row|
+      output += "#{row.join}\n"
+    end
+    output
+  end
 
   def output_long_false(files)
     output = ''

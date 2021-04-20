@@ -1,18 +1,13 @@
 # frozen_string_literal: true
 
 require 'minitest/autorun'
-require_relative '../lib/file'
+require_relative '../lib/ls_file'
 
 class TestFile < Minitest::Test
   def setup
     absolute_path = File.expand_path('~/Desktop')
-    @file = File.new("#{absolute_path}/1332")
-    @current_dir = File.new("#{absolute_path}/.")
-  end
-
-  def test_name
-    assert_equal('1332', @file.name)
-    assert_equal('.', @current_dir.name)
+    @file = LsFile.new('1332', absolute_path)
+    @current_dir = LsFile.new('.', absolute_path)
   end
 
   def test_type
@@ -48,5 +43,10 @@ class TestFile < Minitest::Test
   def test_size
     assert_equal('981', @file.size)
     assert_equal('320', @current_dir.size)
+  end
+
+  def test_blocks
+    assert_equal(8, @file.blocks)
+    assert_equal(0, @current_dir.blocks)
   end
 end

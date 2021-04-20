@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-class File
-  attr_reader :path, :file
+class LsFile
+  attr_reader :name, :file
 
   FILE_TYPE = {
     'file' => '-',
@@ -25,21 +25,10 @@ class File
     '7' => 'rwx'
   }.freeze
 
-  def initialize(path)
-    @path = path
-    absolute_path = File.expand_path(path)
+  def initialize(name, path)
+    @name = name
+    absolute_path = File.expand_path(name, path)
     @file = File::Stat.new(absolute_path)
-  end
-
-  def name
-    case path
-    when %r{/\.$}
-      '.'
-    when %r{/\.\.$}
-      '..'
-    else
-      File.basename(path)
-    end
   end
 
   def type
@@ -72,4 +61,9 @@ class File
   def size
     file.size.to_s
   end
+
+  def blocks
+    file.blocks
+  end
 end
+
