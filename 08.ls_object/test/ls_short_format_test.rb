@@ -2,10 +2,10 @@
 
 require 'date'
 require 'minitest/autorun'
-require_relative '../lib/ls'
+require_relative '../lib/ls_short_format'
 require_relative '../lib/directory'
 
-class LsTest < Minitest::Test
+class LsShortFormatTest < Minitest::Test
   def setup
     system('mkdir ~/test')
     system('touch ~/test/.test.txt')
@@ -18,8 +18,8 @@ class LsTest < Minitest::Test
       test.txt
     TEXT
 
-    options = { a: false, r: false, l: false }
-    ls = Ls.new(@directory, options)
+    options = { a: false, r: false }
+    ls = LsShortFormat.new(@directory, options)
     assert_equal output, ls.execute
   end
 
@@ -32,17 +32,7 @@ class LsTest < Minitest::Test
     TEXT
 
     options = { a: true, r: false, l: false }
-    ls = Ls.new(@directory, options)
-    assert_equal output, ls.execute
-  end
-
-  def test_execute_l_option
-    output = "total 0\n"
-    time = Time.now.strftime('%_2m %_2d %H:%M')
-    output += "-rw-r--r-- 1 ichikawamaki staff 0 #{time} test.txt\n"
-
-    options = { a: false, r: false, l: true }
-    ls = Ls.new(@directory, options)
+    ls = LsShortFormat.new(@directory, options)
     assert_equal output, ls.execute
   end
 
@@ -56,7 +46,7 @@ class LsTest < Minitest::Test
 
     options = { a: true, r: true, l: false }
 
-    ls = Ls.new(@directory, options)
+    ls = LsShortFormat.new(@directory, options)
     assert_equal output, ls.execute
   end
 
