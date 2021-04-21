@@ -18,7 +18,7 @@ class LsLongFormat < Ls
     end.transpose
 
     rows = algin(columns, 1).transpose
-    total = Directory.calc_total_blocks(files)
+    total = LsDirectory.calc_total_blocks(files)
     join(rows, "total #{total}")
   end
 end

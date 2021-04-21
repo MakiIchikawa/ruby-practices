@@ -3,14 +3,14 @@
 require 'date'
 require 'minitest/autorun'
 require_relative '../lib/ls_long_format'
-require_relative '../lib/directory'
+require_relative '../lib/ls_directory'
 
 class LsLongFormatTest < Minitest::Test
   def setup
     system('mkdir ~/test')
     system('touch ~/test/.test.txt')
     system('touch ~/test/test.txt')
-    @directory = Directory.new('~/test')
+    @directory = LsDirectory.new('~/test')
   end
 
   def test_execute_l_option

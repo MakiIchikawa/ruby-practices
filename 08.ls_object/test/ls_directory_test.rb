@@ -1,14 +1,14 @@
 # frozen_string_literal: true
 
 require 'minitest/autorun'
-require_relative '../lib/directory'
+require_relative '../lib/ls_directory'
 
-class DirectoryTest < Minitest::Test
+class LsDirectoryTest < Minitest::Test
   def setup
     system('mkdir ~/test')
     system('touch ~/test/.test.txt')
     system('touch ~/test/test.txt')
-    @directory = Directory.new('~/test')
+    @directory = LsDirectory.new('~/test')
   end
 
   def test_files
@@ -27,10 +27,10 @@ class DirectoryTest < Minitest::Test
   end
 
   def test_calc_total_blocks
-    directory = Directory.new('~/Desktop')
+    directory = LsDirectory.new('~/Desktop')
     a_option = false
     files = directory.files(a_option)
-    assert_equal '18808', Directory.calc_total_blocks(files)
+    assert_equal '18808', LsDirectory.calc_total_blocks(files)
   end
 
   def teardown

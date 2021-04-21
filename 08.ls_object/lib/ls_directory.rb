@@ -2,7 +2,7 @@
 
 require_relative 'ls_file'
 
-class Directory
+class LsDirectory
   attr_reader :absolute_path
 
   def initialize(path)
