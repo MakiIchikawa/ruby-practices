@@ -66,4 +66,3 @@ class LsFile
     file.blocks
   end
 end
-

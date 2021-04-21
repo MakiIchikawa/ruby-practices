@@ -17,8 +17,8 @@ module OutputApi
     columns
   end
 
-  def join(rows, heading=nil)
-    output = heading ? heading + "\n" : ''
+  def join(rows, heading = nil)
+    output = heading ? "#{heading}\n" : ''
     rows.each do |row|
       output += "#{row.join}\n"
     end
