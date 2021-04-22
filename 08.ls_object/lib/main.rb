@@ -7,7 +7,7 @@ require_relative 'ls_short_format'
 require_relative 'ls_long_format'
 require_relative 'ls_directory'
 
-options = { a: false, r: false}
+options = { a: false, r: false }
 l_option = false
 opt = OptionParser.new
 
