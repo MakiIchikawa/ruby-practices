@@ -4,6 +4,7 @@ module OutputApi
   private
 
   def calc_max_word_count(words)
+    words.map!(&:to_s)
     words.map(&:size).max
   end
 
@@ -11,8 +12,17 @@ module OutputApi
     columns.each_with_index do |column, index|
       break if index + 1 == columns.length
 
-      width = calc_max_word_count(column) + white_character_count
-      column.map! { |element| element.ljust(width) }
+      whitespace = if white_character_count.is_a?(Integer)
+                     ' ' * white_character_count
+                   else
+                     ' ' * white_character_count[index]
+                   end
+      width = calc_max_word_count(column)
+      column.map! do |element|
+        element.is_a?(String) && element.ljust(width)
+        element.is_a?(Integer) && element.to_s.rjust(width)
+        element << whitespace
+      end
     end
     columns
   end
