@@ -47,7 +47,7 @@ class LsFile
   end
 
   def nlink
-    file.nlink.to_s
+    file.nlink
   end
 
   def owner
@@ -59,7 +59,7 @@ class LsFile
   end
 
   def size
-    file.size.to_s
+    file.size
   end
 
   def blocks

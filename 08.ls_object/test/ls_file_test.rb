@@ -26,8 +26,8 @@ class TestFile < Minitest::Test
   end
 
   def test_nlink
-    assert_equal('1', @file.nlink)
-    assert_equal('10', @current_dir.nlink)
+    assert_equal(1, @file.nlink)
+    assert_equal(10, @current_dir.nlink)
   end
 
   def test_owner
@@ -41,8 +41,8 @@ class TestFile < Minitest::Test
   end
 
   def test_size
-    assert_equal('981', @file.size)
-    assert_equal('320', @current_dir.size)
+    assert_equal(981, @file.size)
+    assert_equal(320, @current_dir.size)
   end
 
   def test_blocks
