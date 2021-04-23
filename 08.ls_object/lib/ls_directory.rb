@@ -16,7 +16,7 @@ class LsDirectory
 
       files << LsFile.new(f, absolute_path)
     end
-    files
+    files.sort_by(&:name)
   end
 
   def self.calc_total_blocks(files)
