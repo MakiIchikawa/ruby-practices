@@ -20,6 +20,6 @@ class LsDirectory
   end
 
   def self.calc_total_blocks(files)
-    files.inject(0) { |total, file| total + file.blocks }.to_s
+    files.sum(&:blocks).to_s
   end
 end
