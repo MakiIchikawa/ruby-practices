@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module OutputApi
+module OutputCommonFunctions
   private
 
   def calc_max_word_count(words)
