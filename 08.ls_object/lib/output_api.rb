@@ -22,10 +22,7 @@ module OutputApi
   end
 
   def join(rows, heading = nil)
-    output = heading ? "#{heading}\n" : ''
-    rows.each do |row|
-      output += "#{row.join}\n"
-    end
-    output
+    heading = heading ? "#{heading}\n" : ''
+    "#{heading}#{rows.map(&:join).join("\n")}\n"
   end
 end
