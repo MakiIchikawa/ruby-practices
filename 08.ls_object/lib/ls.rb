@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
+require_relative '../lib/output_common_functions'
+
 class Ls
+  include OutputCommonFunctions
+
   attr_reader :directory, :options
 
   def initialize(directory, options)

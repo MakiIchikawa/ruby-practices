@@ -1,10 +1,8 @@
 # frozen_string_literal: true
 
 require_relative '../lib/ls'
-require_relative '../lib/output_common_functions'
 
 class LsLongFormat < Ls
-  include OutputCommonFunctions
 
   private
 
