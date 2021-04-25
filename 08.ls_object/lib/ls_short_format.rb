@@ -3,7 +3,6 @@
 require_relative '../lib/ls'
 
 class LsShortFormat < Ls
-
   private
 
   def output(files)

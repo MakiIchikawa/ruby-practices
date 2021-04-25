@@ -3,7 +3,6 @@
 require_relative '../lib/ls'
 
 class LsLongFormat < Ls
-
   private
 
   def output(files)
