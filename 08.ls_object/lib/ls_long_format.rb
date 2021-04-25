@@ -6,6 +6,8 @@ require_relative '../lib/output_api'
 class LsLongFormat < Ls
   include OutputApi
 
+  private
+
   def output(files)
     columns = files.each_with_object([]) do |file, rows|
       rows << [file.type + file.permission,
