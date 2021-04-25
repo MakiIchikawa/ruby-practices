@@ -16,7 +16,7 @@ class LsLongFormatTest < Minitest::Test
   def test_execute_l_option
     output = "total 0\n"
     time = Time.now.strftime('%_2m %_2d %H:%M')
-    output += "-rw-r--r-- 1 ichikawamaki staff 0 #{time} test.txt\n"
+    output += "-rw-r--r--  1 ichikawamaki  staff  0 #{time} test.txt\n"
 
     options = { a: false, r: false }
     ls = LsLongFormat.new(@directory, options)

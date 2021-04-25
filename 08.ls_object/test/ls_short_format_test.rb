@@ -15,7 +15,7 @@ class LsShortFormatTest < Minitest::Test
 
   def test_execute
     output = <<~TEXT
-      test.txt
+      test.txt   
     TEXT
 
     options = { a: false, r: false }
@@ -25,12 +25,11 @@ class LsShortFormatTest < Minitest::Test
 
   def test_execute_a_option
     output = <<~TEXT
-      .
-      ..
-      .test.txt
-      test.txt
+      .           
+      ..          
+      .test.txt   
+      test.txt    
     TEXT
-
     options = { a: true, r: false, l: false }
     ls = LsShortFormat.new(@directory, options)
     assert_equal output, ls.execute
@@ -38,10 +37,10 @@ class LsShortFormatTest < Minitest::Test
 
   def test_execute_r_option
     output = <<~TEXT
-      test.txt
-      .test.txt
-      ..
-      .
+      test.txt    
+      .test.txt   
+      ..          
+      .           
     TEXT
 
     options = { a: true, r: true, l: false }
