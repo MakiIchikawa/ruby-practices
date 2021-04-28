@@ -4,6 +4,12 @@
 require 'optparse'
 require_relative 'text_file'
 require_relative 'files'
+require_relative 'wc'
+
+opt = OptionParser.new
+l_option = false
+opt.on('-l') { |v| l_option = v }
+opt.parse!(ARGV)
 
 files = Files.new
 first_filename = ARGF.filename
@@ -17,3 +23,6 @@ ARGF.each do |line|
   end
   text_file.add_line(line)
 end
+
+wc = Wc.new(files, l_option)
+puts wc.output
