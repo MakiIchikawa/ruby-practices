@@ -27,9 +27,9 @@ class TestWc < Minitest::Test
   def test_output
     wc = Wc.new(@fruitfiles)
     output = <<-TEXT
-      2      3     14 apple.txt
-      2      2     10 orange.txt
-      4      5     24 total
+       2       3      14 apple.txt
+       2       2      10 orange.txt
+       4       5      24 total
     TEXT
     assert_equal output, wc.output
   end
@@ -37,9 +37,9 @@ class TestWc < Minitest::Test
   def test_output_l_option_true
     wc = Wc.new(@fruitfiles, true)
     output = <<-TEXT
-      2 apple.txt
-      2 orange.txt
-      4 total
+       2 apple.txt
+       2 orange.txt
+       4 total
     TEXT
     assert_equal output, wc.output
   end
@@ -47,7 +47,7 @@ class TestWc < Minitest::Test
   def test_output_multiple_false
     wc = Wc.new(@testfiles)
     output = <<-TEXT
-      1      1      5 test.txt
+       1       1       5 test.txt
     TEXT
     assert_equal output, wc.output
   end

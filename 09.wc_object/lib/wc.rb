@@ -29,7 +29,7 @@ class Wc
     columns.map { |column| column << column.sum }
   end
 
-  def algin(columns, column_width = 7)
+  def algin(columns, column_width = 8)
     columns.each_with_object([]) do |column, algined_columns|
       algined_columns << column.map { |element| element.to_s.rjust(column_width) }
     end
