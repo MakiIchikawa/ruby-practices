@@ -24,4 +24,4 @@ ARGF.each do |line|
 end
 
 wc = Wc.new(files, l_option)
-puts wc.output
+puts wc.execute

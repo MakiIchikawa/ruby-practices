@@ -12,6 +12,8 @@ class Wc
     output
   end
 
+  private
+
   def output
     columns = []
     columns << files.number_of_rows

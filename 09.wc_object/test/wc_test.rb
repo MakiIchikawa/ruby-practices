@@ -31,7 +31,7 @@ class TestWc < Minitest::Test
        2       2      10 orange.txt
        4       5      24 total
     TEXT
-    assert_equal output, wc.output
+    assert_equal output, wc.execute
   end
 
   def test_output_l_option_true
@@ -41,7 +41,7 @@ class TestWc < Minitest::Test
        2 orange.txt
        4 total
     TEXT
-    assert_equal output, wc.output
+    assert_equal output, wc.execute
   end
 
   def test_output_multiple_false
@@ -49,6 +49,6 @@ class TestWc < Minitest::Test
     output = <<-TEXT
        1       1       5 test.txt
     TEXT
-    assert_equal output, wc.output
+    assert_equal output, wc.execute
   end
 end
