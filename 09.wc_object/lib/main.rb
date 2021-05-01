@@ -12,8 +12,7 @@ opt.on('-l') { |v| l_option = v }
 opt.parse!(ARGV)
 
 wc = Wc.new
-first_filename = ARGF.filename
-text_file = first_filename ? TextFile.new(first_filename) : TextFile.new('-')
+text_file = TextFile.new(ARGF.filename)
 wc.add_file(text_file)
 ARGF.each do |line|
   unless wc.add_files_names.include?(ARGF.filename)
