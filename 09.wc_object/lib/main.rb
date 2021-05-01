@@ -16,19 +16,25 @@ first_filename = ARGF.filename
 text_file = first_filename ? TextFile.new(first_filename) : TextFile.new('-')
 wc.add_file(text_file)
 ARGF.each do |line|
-  unless wc.add_file_names.include?(ARGF.filename)
+  unless wc.add_files_names.include?(ARGF.filename)
     text_file = TextFile.new(ARGF.filename)
     wc.add_file(text_file)
   end
   text_file.add_line(line)
 end
 
+wc_out = WcOut.new
+
 count_columns = []
 count_columns << wc.number_of_rows
 count_columns << wc.number_of_words << wc.bytes unless l_option
-wc_out = WcOut.new
-add_file_names = wc.add_file_names
 wc_out.set_count_columns(count_columns)
-wc_out.set_name_column(add_file_names) unless add_file_names.all? { |name| name == '-' }
+
+add_files_names = wc.add_files_names
+unless add_files_names.all? { |name| name == '-' } 
+  names_column = add_files_names
+  names_column << 'total' if wc.add_files_multiple?
+  wc_out.set_name_column(names_column)
+end
 
 puts wc_out.output
