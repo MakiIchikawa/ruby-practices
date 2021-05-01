@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class Wc
-
   def initialize
     @files = []
   end

@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class WcOut
-
   def initialize
     @out_columns = []
   end
