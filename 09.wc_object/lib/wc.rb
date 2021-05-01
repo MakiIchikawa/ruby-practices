@@ -9,8 +9,8 @@ class Wc
     @files << file
   end
 
-  def add_file?(file_name)
-    !!(@files.find { |file| file.file_name == file_name })
+  def add_file_names
+    @files.map(&:file_name)
   end
 
   def number_of_rows

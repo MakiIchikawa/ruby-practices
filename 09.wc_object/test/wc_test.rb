@@ -18,11 +18,11 @@ class TestWc < Minitest::Test
     @testfile.add_line("test\n")
   end
 
-  def test_add_file?
+  def test_add_file_names
     wc = Wc.new
     wc.add_file(@applefile)
-    assert wc.add_file?('apple.txt')
-    refute wc.add_file?('appl.txt')
+    wc.add_file(@orangefile)
+    assert ['apple.txt', 'orange.txt'], wc.add_file_names
   end
 
   def test_number_of_rows
