@@ -9,8 +9,12 @@ class Wc
     @files << file
   end
 
-  def add_file_names
+  def add_files_names
     @files.map(&:file_name)
+  end
+
+  def add_files_multiple?
+    @files.length > 1
   end
 
   def number_of_rows
