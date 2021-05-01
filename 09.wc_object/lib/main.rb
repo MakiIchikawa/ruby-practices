@@ -31,7 +31,7 @@ count_columns << wc.number_of_words << wc.bytes unless l_option
 wc_out.set_count_columns(count_columns)
 
 add_files_names = wc.add_files_names
-unless add_files_names.all? { |name| name == '-' } 
+unless add_files_names.all? { |name| name == '-' }
   names_column = add_files_names
   names_column << 'total' if wc.add_files_multiple?
   wc_out.set_name_column(names_column)
