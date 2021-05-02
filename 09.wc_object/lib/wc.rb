@@ -32,7 +32,7 @@ class Wc
   private
 
   def add_total(numbers)
-    numbers << numbers.sum if @files.length > 1
+    numbers << numbers.sum if add_files_multiple?
     numbers
   end
 end
