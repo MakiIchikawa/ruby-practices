@@ -24,5 +24,4 @@ class WcOut
   def algin_names_column(column_space = 1)
     @names_column.map { |element| ' ' * column_space + element }
   end
-
 end
