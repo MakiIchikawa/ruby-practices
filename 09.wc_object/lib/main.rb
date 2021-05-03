@@ -22,14 +22,10 @@ ARGF.each do |line|
   text_file.add_line(line)
 end
 
-wc_out = WcOut.new
+counts = []
+counts << wc.number_of_rows
+counts << wc.number_of_words << wc.bytes unless l_option
 
-count_columns = []
-count_columns << wc.number_of_rows
-count_columns << wc.number_of_words << wc.bytes unless l_option
-wc_out.set_count_columns(count_columns)
-
-add_files_names = wc.add_files_names
-wc_out.set_name_column(add_files_names) unless add_files_names.all? { |name| name == '-' }
+wc_out = WcOut.new(counts, wc.add_files_names)
 
 puts wc_out.output
