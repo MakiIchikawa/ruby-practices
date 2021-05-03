@@ -21,16 +21,9 @@ class TestWc < Minitest::Test
   def test_add_files_names
     wc = Wc.new
     wc.add_file(@applefile)
+    assert_equal ['apple.txt'], wc.add_files_names
     wc.add_file(@orangefile)
-    assert ['apple.txt', 'orange.txt'], wc.add_files_names
-  end
-
-  def test_add_files_multiple?
-    wc = Wc.new
-    wc.add_file(@applefile)
-    refute wc.add_files_multiple?
-    wc.add_file(@orangefile)
-    assert wc.add_files_multiple?
+    assert_equal ['apple.txt', 'orange.txt', 'total'], wc.add_files_names
   end
 
   def test_number_of_rows

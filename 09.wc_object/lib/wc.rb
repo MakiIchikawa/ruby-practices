@@ -10,11 +10,7 @@ class Wc
   end
 
   def add_files_names
-    @files.map(&:file_name)
-  end
-
-  def add_files_multiple?
-    @files.length > 1
+    add_total(@files.map(&:file_name))
   end
 
   def number_of_rows
@@ -31,8 +27,10 @@ class Wc
 
   private
 
-  def add_total(numbers)
-    numbers << numbers.sum if add_files_multiple?
-    numbers
+  def add_total(counts_or_names)
+    if @files.length > 1
+      counts_or_names << (counts_or_names.all?(String) ? 'total' : counts_or_names.sum)
+    end
+    counts_or_names
   end
 end
