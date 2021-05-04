@@ -23,11 +23,6 @@ ARGF.each do |line|
 end
 
 wc = Wc.new(files)
-
-counts = []
-counts << wc.number_of_rows
-counts << wc.number_of_words << wc.bytes unless l_option
-
-wc_out = WcOut.new(counts, wc.files_names)
+wc_out = WcOut.new(wc.counts(l_option), wc.files_names)
 
 puts wc_out.output
