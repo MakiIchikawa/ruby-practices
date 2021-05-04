@@ -16,6 +16,8 @@ class TestWc < Minitest::Test
 
     @testfile = TextFile.new('test.txt')
     @testfile.add_line("test\n")
+
+    @hyphen = TextFile.new('-')
   end
 
   def test_files_names
@@ -23,6 +25,8 @@ class TestWc < Minitest::Test
     assert_equal ['apple.txt'], wc.files_names
     wc = Wc.new([@applefile, @orangefile])
     assert_equal ['apple.txt', 'orange.txt', 'total'], wc.files_names
+    wc = Wc.new([@hyphen])
+    assert_equal nil, wc.files_names
   end
 
   def test_number_of_rows
