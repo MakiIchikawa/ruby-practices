@@ -6,7 +6,7 @@ class Wc
   end
 
   def files_names
-    return if @files.all?{ |file| file.file_name == '-' }
+    return if @files.all? { |file| file.file_name == '-' }
 
     add_total(@files.map(&:file_name))
   end
