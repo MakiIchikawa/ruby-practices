@@ -12,14 +12,14 @@ class Wc
   end
 
   def counts(l_option)
-    counts = [number_of_rows]
+    counts = [number_of_lines]
     counts << number_of_words << bytes unless l_option
     counts
   end
 
   private
 
-  def number_of_rows
+  def number_of_lines
     add_total(@files.map(&:number_of_lines))
   end
 
