@@ -1,14 +1,14 @@
 # frozen_string_literal: true
 
 class WcOut
-  def initialize(counts, names)
+  def initialize(counts, names = nil)
     @counts_columns = counts
     @names_column = names
   end
 
   def output
     out_columns = algin_counts_columns
-    out_columns << algin_names_column unless @names_column == ['-']
+    out_columns << algin_names_column if @names_column
     out_rows = out_columns.transpose.map(&:join)
     "#{out_rows.join("\n")}\n"
   end
