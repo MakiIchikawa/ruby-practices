@@ -11,6 +11,14 @@ class Wc
     add_total(@files.map(&:file_name))
   end
 
+  def counts(l_option)
+    counts = [number_of_rows]
+    counts << number_of_words << bytes unless l_option
+    counts
+  end
+
+  private
+
   def number_of_rows
     add_total(@files.map(&:number_of_lines))
   end
@@ -22,8 +30,6 @@ class Wc
   def bytes
     add_total(@files.map(&:bytes))
   end
-
-  private
 
   def add_total(counts_or_names)
     if @files.length > 1

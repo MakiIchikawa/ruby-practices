@@ -29,18 +29,13 @@ class TestWc < Minitest::Test
     assert_equal nil, wc.files_names
   end
 
-  def test_number_of_rows
+  def test_counts
     wc = Wc.new([@applefile, @orangefile])
-    assert_equal [2, 2, 4], wc.number_of_rows
+    assert_equal [[2, 2, 4], [3, 2, 5], [14, 10, 24]], wc.counts(false)
   end
 
-  def test_number_of_words
-    wc = Wc.new([@applefile, @orangefile])
-    assert_equal [3, 2, 5], wc.number_of_words
-  end
-
-  def test_bytes
+  def test_counts_l_option
     wc = Wc.new([@testfile])
-    assert_equal [5], wc.bytes
+    assert_equal [[1]], wc.counts(true)
   end
 end
