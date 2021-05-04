@@ -18,31 +18,25 @@ class TestWc < Minitest::Test
     @testfile.add_line("test\n")
   end
 
-  def test_add_files_names
-    wc = Wc.new
-    wc.add_file(@applefile)
-    assert_equal ['apple.txt'], wc.add_files_names
-    wc.add_file(@orangefile)
-    assert_equal ['apple.txt', 'orange.txt', 'total'], wc.add_files_names
+  def test_files_names
+    wc = Wc.new([@applefile])
+    assert_equal ['apple.txt'], wc.files_names
+    wc = Wc.new([@applefile, @orangefile])
+    assert_equal ['apple.txt', 'orange.txt', 'total'], wc.files_names
   end
 
   def test_number_of_rows
-    wc = Wc.new
-    wc.add_file(@applefile)
-    wc.add_file(@orangefile)
+    wc = Wc.new([@applefile, @orangefile])
     assert_equal [2, 2, 4], wc.number_of_rows
   end
 
   def test_number_of_words
-    wc = Wc.new
-    wc.add_file(@applefile)
-    wc.add_file(@orangefile)
+    wc = Wc.new([@applefile, @orangefile])
     assert_equal [3, 2, 5], wc.number_of_words
   end
 
   def test_bytes
-    wc = Wc.new
-    wc.add_file(@testfile)
+    wc = Wc.new([@testfile])
     assert_equal [5], wc.bytes
   end
 end

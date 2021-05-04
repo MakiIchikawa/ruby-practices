@@ -1,15 +1,11 @@
 # frozen_string_literal: true
 
 class Wc
-  def initialize
-    @files = []
+  def initialize(files)
+    @files = files
   end
 
-  def add_file(file)
-    @files << file
-  end
-
-  def add_files_names
+  def files_names
     add_total(@files.map(&:file_name))
   end
 
