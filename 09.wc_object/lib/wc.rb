@@ -1,8 +1,17 @@
 # frozen_string_literal: true
 
 class Wc
-  def initialize(files)
-    @files = files
+  def initialize(argf)
+    @files = []
+    text_file = TextFile.new(argf.filename)
+    @files << text_file
+    argf.each do |line|
+      unless @files.map(&:file_name).include?(argf.filename)
+        text_file = TextFile.new(ARGF.filename)
+        @files << text_file
+      end
+      text_file.add_line(line)
+    end
   end
 
   def files_names
